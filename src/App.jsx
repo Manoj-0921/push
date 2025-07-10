@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
     setLoginStatus("Logging in...");
     try {
-      const res = await fetch("https://3611d52a1dac.ngrok-free.app/login", {
+      const res = await fetch("https://681935013de3.ngrok-free.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

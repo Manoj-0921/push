@@ -5,12 +5,17 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   server: {
     host: true,
-    allowedHosts: [".ngrok-free.app"], // ✅ Let ngrok access Vite dev server
+    allowedHosts: [".ngrok-free.app"], // ✅ Allow external tunneling
   },
   plugins: [
     react(),
     VitePWA({
       registerType: "prompt",
+      strategies: "injectManifest", // 👈 Required for custom SW
+      injectManifest: {
+        swSrc: "src/sw.js", // 👈 Path to your service worker
+        swDest: "sw.js", // 👈 Output file in dist/
+      },
       manifest: {
         name: "My Vite PWA",
         short_name: "PWA",
@@ -33,16 +38,9 @@ export default defineConfig({
           },
         ],
       },
-
       devOptions: {
         enabled: true,
       },
-      workbox: {
-        globPatterns: ["**/*.{js,css,html,png,jpg}"],
-      },
-      srcDir: "src",
-      fileName: "sw.js",
-      strategies: "injectManifest",
     }),
   ],
 });
