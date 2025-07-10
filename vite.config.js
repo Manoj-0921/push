@@ -33,9 +33,16 @@ export default defineConfig({
           },
         ],
       },
+
       devOptions: {
         enabled: true,
       },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,png,jpg}"],
+      },
+      srcDir: "src",
+      fileName: "sw.js",
+      strategies: "injectManifest",
     }),
   ],
 });
