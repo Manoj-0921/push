@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
     setLoginStatus("Logging in...");
     try {
-      const res = await fetch("https://c72da508e6e7.ngrok-free.app/login", {
+      const res = await fetch("https://a95e588faaf4.ngrok-free.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -31,6 +31,20 @@ function App() {
     setStatus("Subscribing...");
     await subscribeToPush(token);
     setStatus("Subscribed!");
+  };
+
+  const handleLogout = async () => {
+    // Optionally notify backend
+    await fetch("https://a95e588faaf4.ngrok-free.app/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    });
+    setToken(null);
+    setUsername("");
+    setPassword("");
+    setLoginStatus("");
+    setStatus("Enable Push Notifications");
   };
 
   return (
@@ -55,7 +69,12 @@ function App() {
           <div>{loginStatus}</div>
         </form>
       ) : (
-        <button onClick={handleSubscribe}>{status}</button>
+        <>
+          <button onClick={handleSubscribe}>{status}</button>
+          <button onClick={handleLogout} style={{ marginLeft: "1em" }}>
+            Logout
+          </button>
+        </>
       )}
     </div>
   );

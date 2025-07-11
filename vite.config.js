@@ -13,7 +13,7 @@ export default defineConfig({
       registerType: "prompt",
       strategies: "injectManifest", // 👈 Required for custom SW
       injectManifest: {
-        swSrc: "src/sw.js", // 👈 Path to your service worker
+        swSrc: "sw.js", // 👈 Path to your service worker
         swDest: "sw.js", // 👈 Output file in dist/
       },
       manifest: {

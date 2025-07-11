@@ -26,7 +26,7 @@ export async function subscribeToPush(token) {
       ),
     });
 
-    await fetch("https://c72da508e6e7.ngrok-free.app/subscribe", {
+    await fetch("https://a95e588faaf4.ngrok-free.app/subscribe", {
       method: "POST",
       body: JSON.stringify({ token, subscription }),
       headers: { "Content-Type": "application/json" },
