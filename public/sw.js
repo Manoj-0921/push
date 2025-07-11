@@ -1,5 +1,10 @@
-// ✅ Handle incoming push notifications
-self.addEventListener("push", function (event) {
+import { precacheAndRoute } from "workbox-precaching";
+
+// Injected by Workbox
+precacheAndRoute(self.__WB_MANIFEST);
+
+// Handle push notifications
+self.addEventListener("push", (event) => {
   let data = {};
   if (event.data) {
     data = event.data.json();
@@ -15,11 +20,8 @@ self.addEventListener("push", function (event) {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-// ✅ Handle notification click — opens root of PWA
-self.addEventListener("notificationclick", function (event) {
+// Handle notification click
+self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   event.waitUntil(clients.openWindow("/"));
 });
-
-// ✅ Required for Workbox to inject pre-cache manifest
-self.__WB_MANIFEST;

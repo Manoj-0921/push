@@ -13,8 +13,7 @@ export default defineConfig({
       registerType: "prompt",
       strategies: "injectManifest", // 👈 Required for custom SW
       injectManifest: {
-        swSrc: "sw.js", // 👈 Path to your service worker
-        swDest: "sw.js", // 👈 Output file in dist/
+        swSrc: "public/sw.js",
       },
       manifest: {
         name: "My Vite PWA",

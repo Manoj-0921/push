@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
     setLoginStatus("Logging in...");
     try {
-      const res = await fetch("https://a95e588faaf4.ngrok-free.app/login", {
+      const res = await fetch(" https://07827c44460c.ngrok-free.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -35,7 +35,7 @@ function App() {
 
   const handleLogout = async () => {
     // Optionally notify backend
-    await fetch("https://a95e588faaf4.ngrok-free.app/logout", {
+    await fetch(" https://07827c44460c.ngrok-free.app/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
