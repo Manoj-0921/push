@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { subscribeToPush } from "./main.jsx";
-import "./App.css";
+import "./App.css"; // Ensure this contains @tailwind directives
 
 function App() {
   const [status, setStatus] = useState("Enable Push Notifications");
@@ -13,7 +13,7 @@ function App() {
     e.preventDefault();
     setLoginStatus("Logging in...");
     try {
-      const res = await fetch(" https://27882cdb3392.ngrok-free.app/login", {
+      const res = await fetch("https://8da896f66358.ngrok-free.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -34,8 +34,7 @@ function App() {
   };
 
   const handleLogout = async () => {
-    // Optionally notify backend
-    await fetch("  https://27882cdb3392.ngrok-free.app/logout", {
+    await fetch(" https://8da896f66358.ngrok-free.app/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
@@ -48,34 +47,51 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>React PWA Push Demo</h1>
-      {!token ? (
-        <form onSubmit={handleLogin}>
-          <input
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Login</button>
-          <div>{loginStatus}</div>
-        </form>
-      ) : (
-        <>
-          <button onClick={handleSubscribe}>{status}</button>
-          <button onClick={handleLogout} style={{ marginLeft: "1em" }}>
-            Logout
-          </button>
-        </>
-      )}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-sm">
+        <h1 className="text-xl font-bold text-center mb-4">React PWA Push Demo</h1>
+        {!token ? (
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Login
+            </button>
+            <div className="text-sm text-center text-gray-500">{loginStatus}</div>
+          </form>
+        ) : (
+          <div className="space-y-4 text-center">
+            <button
+              onClick={handleSubscribe}
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            >
+              {status}
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-2"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
