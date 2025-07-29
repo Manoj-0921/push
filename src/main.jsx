@@ -25,7 +25,7 @@ export async function subscribeToPush(token) {
         "BMU_YCY4w8CyrDxvP5aQt-1KsAJT8huKF6zfJQoBAGN0Xvcdzmxn5E-h-PKYeJAKEVPnFgO1zz3bZCOzBQQe7t8"
       ),
     });
-
+       console.log(subscription,"subscription",token,"token");
     await fetch("https://8a98e32dceb8.ngrok-free.app/subscribe", {
       method: "POST",
       body: JSON.stringify({ token, subscription }),
